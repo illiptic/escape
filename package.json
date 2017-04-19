@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Escape room game",
   "main": "src/index.js",
+  "repository": "https://github.com/illiptic/escape",
   "scripts": {
     "clean": "rimraf dist",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
