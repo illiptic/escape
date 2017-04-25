@@ -2,8 +2,8 @@ import _ from 'lodash';
 import Konva from 'konva';
 
 import Loader from './loader.js';
-import ui from './ui.js'
-import game from './game.js'
+import ui from './ui.js';
+import game from './game.js';
 
 export default {
   init () {
@@ -17,6 +17,13 @@ export default {
         game.inventory.push({icon: this.assets['flint_steel']});
         ui.init();
         game.draw();
+
+        document.addEventListener('keydown', (e) => {
+          let value = parseInt(e.key, 10);
+          if (typeof value === 'number' && !isNaN(value)) {
+            game.selectItem(value - 1);
+          }
+        });
       });
   },
 

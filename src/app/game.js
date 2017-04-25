@@ -14,6 +14,6 @@ let game = {
   draw () {
     ui.render(this);
   }
-}
+};
 
 export default game;

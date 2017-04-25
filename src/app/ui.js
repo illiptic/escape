@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Dashboard from './dashboard.js';
 
 let ui = {
@@ -13,25 +14,29 @@ let ui = {
     });
 
     // add canvas element
-    this.hud = new Konva.Layer();
+    this.hud = new Konva.Layer({
+    });
     this.stage.add(this.hud);
+    this.hud.add(Dashboard.init({x: 0, y: 540}));
 
-    // create shape
-    // var background = new Konva.Image({
-    //   x: 0,
-    //   y: 0,
-    //   image: this.assets['marked_stone'],
-    //   width: 800,
-    //   height: 600
-    // });
-    // ui.add(background);
+    this.test = new Konva.Text({
+      x: this.stage.getWidth() / 2,
+      y: 40,
+      fontSize: 30,
+      fontFamily: 'Calibri',
+      fill: 'green'
+    });
+
+    this.hud.add(this.test);
   },
 
   render (game) {
-    this.hud.add(Dashboard.render(game, {x: 0, y: 540}));
+    Dashboard.render(game);
+
+    this.test.text('Item ' + (_.findIndex(game.inventory, 'selected') + 1),);
 
     this.hud.draw();
   }
-}
+};
 
 export default ui;
