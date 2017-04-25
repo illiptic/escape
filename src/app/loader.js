@@ -20,11 +20,11 @@ Loader.prototype.loadImage = function(url){
 
     var image = new Image();
     image.onload = () => {
-      this.imageLoaded.call(this)
-      resolve(image)
-    }
+      this.imageLoaded.call(this);
+      resolve(image);
+    };
     image.src = url;
-  })
+  });
 
 };
 

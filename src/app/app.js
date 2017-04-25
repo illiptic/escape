@@ -1,37 +1,43 @@
-import _ from 'lodash'
-import Loader from './loader.js'
+import _ from 'lodash';
+import Konva from 'konva';
 
-import Konva from 'konva'
+import Loader from './loader.js';
+import ui from './ui.js'
+import game from './game.js'
 
 export default {
   init () {
     this._preloadAssets()
       .then((result) => {
-        this.assets = result
+        this.assets = result;
       })
       .then(() => {
-        this._draw()
-      })
+        game.inventory.push({icon: this.assets['flint'], selected: true});
+        game.inventory.push({icon: this.assets['steel']});
+        game.inventory.push({icon: this.assets['flint_steel']});
+        ui.init();
+        game.draw();
+      });
   },
 
   _preloadAssets () {
     let loader = new Loader(this._onLoad);
 
-    return Promise.all(['marked_stone'].map((name) => {
-      return loader.loadImage('/assets/' + name + '.jpg')
-        .then(img => {
+    return Promise.all(['flint', 'steel', 'flint_steel'].map((name) => {
+      return loader.loadImage('/assets/' + name + '.png')
+        .then((img) => {
           return {
             name,
             img
-          }
-        })
+          };
+        });
     }))
     .then((promises) => {
       return promises.reduce((acc, promise) => {
         acc[promise.name] = promise.img;
         return acc;
-      }, {})
-    })
+      }, {});
+    });
   },
 
   _onLoad () {
@@ -44,29 +50,5 @@ export default {
 
     var container = document.getElementById('container');
     container.setAttribute('style', 'display: block;');
-  },
-
-  _draw () {
-    var stage = new Konva.Stage({
-        container: 'container',
-        width: 800,
-        height: 600
-    });
-
-    // add canvas element
-    var layer = new Konva.Layer();
-    stage.add(layer);
-
-    // create shape
-    var background = new Konva.Image({
-      x: 0,
-      y: 0,
-      image: this.assets['marked_stone'],
-      width: 800,
-      height: 600
-    });
-    layer.add(background);
-
-    layer.draw();
   }
-}
+};
