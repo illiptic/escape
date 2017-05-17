@@ -22,6 +22,10 @@ export default {
           let value = parseInt(e.key, 10);
           if (typeof value === 'number' && !isNaN(value)) {
             game.selectItem(value - 1);
+          } else if (e.key === 'ArrowLeft') {
+            game.goto('start')
+          } else if (e.key === 'ArrowRight') {
+            game.goto('end')
           }
         });
       });

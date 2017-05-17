@@ -1,13 +1,20 @@
-import ui from './ui.js';
+import ui from './ui.js'
+import * as locations from './locations'
 
 let game = {
-  location: '',
+  location: 'start',
+  locations,
   inventory: [],
 
   selectItem (index) {
     this.inventory.forEach((item, i) => {
       item.selected = (index === i);
     });
+    this.draw();
+  },
+
+  goto (location) {
+    this.location = location
     this.draw();
   },
 

@@ -26,14 +26,23 @@ let ui = {
       fontFamily: 'Calibri',
       fill: 'green'
     });
+    this.test2 = new Konva.Text({
+      x: this.stage.getWidth() / 2,
+      y: 140,
+      fontSize: 30,
+      fontFamily: 'Calibri',
+      fill: 'blue'
+    });
 
     this.hud.add(this.test);
+    this.hud.add(this.test2);
   },
 
   render (game) {
     Dashboard.render(game);
 
     this.test.text('Item ' + (_.findIndex(game.inventory, 'selected') + 1),);
+    this.test2.text(game.locations[game.location].name);
 
     this.hud.draw();
   }
