@@ -1,9 +1,8 @@
 import ui from './ui.js'
-import * as locations from './locations'
 
 let game = {
   location: 'start',
-  locations,
+  locations: {},
   inventory: [],
 
   selectItem (index) {

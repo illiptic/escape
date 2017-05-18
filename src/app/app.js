@@ -4,6 +4,7 @@ import Konva from 'konva';
 import Loader from './loader.js';
 import ui from './ui.js';
 import game from './game.js';
+import * as locations from './locations'
 
 export default {
   init () {
@@ -15,6 +16,10 @@ export default {
         game.inventory.push({icon: this.assets['flint'], selected: true});
         game.inventory.push({icon: this.assets['steel']});
         game.inventory.push({icon: this.assets['flint_steel']});
+        game.locations = _.mapValues(locations, (loc) => {
+          loc.background = this.assets[loc.name]
+          return loc
+        })
         ui.init();
         game.draw();
 
@@ -34,7 +39,7 @@ export default {
   _preloadAssets () {
     let loader = new Loader(this._onLoad);
 
-    return Promise.all(['flint', 'steel', 'flint_steel'].map((name) => {
+    return Promise.all(['flint', 'steel', 'flint_steel', 'start', 'end'].map((name) => {
       return loader.loadImage('/assets/' + name + '.png')
         .then((img) => {
           return {
