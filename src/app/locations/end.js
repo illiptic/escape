@@ -1,4 +1,5 @@
 export const end = {
-  name: 'end'
-
+  name: 'end',
+  background: 'end',
+  assets: []
 }

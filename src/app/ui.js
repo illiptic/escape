@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Dashboard from './dashboard.js';
+import Textbox from './textbox.js';
 import Scene from './scene.js';
 
 let ui = {
@@ -25,10 +26,12 @@ let ui = {
     });
     this.stage.add(this.hud);
     this.hud.add(Dashboard.init({x: 0, y: 540}));
+    this.hud.add(Textbox.init({x: 50, y: 50}));
   },
 
   render (game) {
     Dashboard.render(game);
+    Textbox.render(game.message)
     Scene.render(game);
 
     this.scene.draw();

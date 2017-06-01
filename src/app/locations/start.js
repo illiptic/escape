@@ -1,21 +1,50 @@
 export const start = {
   name: 'start',
-  background: 'hieroglyphics1.jpg',
+  background: 'start',
+  assets: [
+    'door',
+    'doorOpen',
+    'flint',
+    'flintInventory'
+  ],
   render (Konva, game) {
-    let test = new Konva.Text({
-      x: 400,
-      y: 40,
-      fontSize: 30,
-      fontFamily: 'Calibri',
-      fill: 'green',
-      text: 'hi'
+    let { doorOpen } = game.state
+
+    let objects = []
+
+    let door = new Konva.Image({
+      x: 300,
+      y: 232,
+      width: 184,
+      height: 250,
+      image: this.assets[doorOpen ? 'doorOpen' : 'door']
     });
 
-    test.on('click', () => {
-      game.goto('end')
+    door.on('click', () => {
+      if (doorOpen) {
+        game.goto('end')
+      } else {
+        console.log('closed')
+      }
     })
+    objects.push(door);
 
-    return test
+    if (!game.inventoryContains('flint')) {
+      let flint = new Konva.Image({
+        x: 650,
+        y: 472,
+        width: 40,
+        height: 40,
+        image: this.assets['flint']
+      });
+
+      flint.on('click', () => {
+        game.addItem({id: 'flint', icon: this.assets['flintInventory']})
+      })
+      objects.push(flint)
+    }
+
+    return objects;
   }
 
 }

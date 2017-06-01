@@ -27,7 +27,10 @@ export class Scene {
     this.sceneLayout && this.sceneLayout.destroy()
     if (currentLocation.render) {
       this.sceneLayout = new Konva.Group();
-      this.sceneLayout.add(currentLocation.render(Konva, game))
+      let objects = [].concat(currentLocation.render(Konva, game))
+      objects.forEach((object) => {
+        this.sceneLayout.add(object)
+      })
       this.scene.add(this.sceneLayout)
     }
   }

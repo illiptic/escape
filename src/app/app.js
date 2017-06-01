@@ -2,22 +2,28 @@ import _ from 'lodash';
 import Konva from 'konva';
 
 import Loader from './loader.js';
+import Sound from './sound.js';
 import ui from './ui.js';
 import game from './game.js';
 import * as locations from './locations'
 
 export default {
   init () {
-    this._preloadAssets()
+    Sound.init();
+    this._preloadAssets(_.flatMap(locations, (loc) => (loc.assets || []).concat(loc.background)))
       .then((result) => {
         this.assets = result;
       })
       .then(() => {
-        game.inventory.push({icon: this.assets['flint'], selected: true});
-        game.inventory.push({icon: this.assets['steel']});
-        game.inventory.push({icon: this.assets['flint_steel']});
+        // game.inventory.push({id: 'flint', icon: this.assets['flint'], selected: true});
+        // game.inventory.push({icon: this.assets['steel']});
+        // game.inventory.push({icon: this.assets['flint_steel']});
         game.locations = _.mapValues(locations, (loc) => {
-          loc.background = this.assets[loc.name]
+          loc.background = this.assets[loc.background]
+          loc.assets = loc.assets.reduce((acc, asset) => {
+            acc[asset] = this.assets[asset];
+            return acc;
+          }, {})
           return loc
         })
         ui.init();
@@ -31,21 +37,30 @@ export default {
             game.goto('start')
           } else if (e.key === 'ArrowRight') {
             game.goto('end')
+          } else if (e.key === 'ArrowUp') {
+            game.message = null
+            game.setState({doorOpen: true})
+          } else if (e.key === 'ArrowDown') {
+            game.message = 'asdf'
+            game.setState({doorOpen: false})
           }
         });
       });
   },
 
-  _preloadAssets () {
+  _preloadAssets (locationAssets) {
     let loader = new Loader(this._onLoad);
 
-    return Promise.all(['flint', 'steel', 'flint_steel', 'start', 'end'].map((name) => {
+    return Promise.all(locationAssets.map((name) => {
       return loader.loadImage('/assets/' + name + '.png')
         .then((img) => {
           return {
             name,
             img
           };
+        })
+        .catch((e) => {
+          console.error('could not load', name, e)
         });
     }))
     .then((promises) => {
