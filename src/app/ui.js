@@ -8,12 +8,18 @@ let ui = {
   hud: null,
   scene: null,
 
-  init () {
+  init (game) {
     this.stage = new Konva.Stage({
         container: 'container',
         width: 800,
         height: 600
     });
+
+    this.stage.on('click', () => {
+      if (game.message) {
+        game.print(false)
+      }    
+    })
 
     // Scene
     this.scene = new Konva.Layer({

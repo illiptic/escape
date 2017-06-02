@@ -21,7 +21,7 @@ export class Scene {
 
   render (game) {
     let currentLocation = game.locations[game.location]
-    this.background.image(currentLocation.background)
+    currentLocation.background && this.background.image(currentLocation.background)
 
     // Create the custom layout
     this.sceneLayout && this.sceneLayout.destroy()
@@ -29,7 +29,7 @@ export class Scene {
       this.sceneLayout = new Konva.Group();
       let objects = [].concat(currentLocation.render(Konva, game))
       objects.forEach((object) => {
-        this.sceneLayout.add(object)
+        object && this.sceneLayout.add(object)
       })
       this.scene.add(this.sceneLayout)
     }

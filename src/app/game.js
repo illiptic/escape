@@ -28,15 +28,26 @@ let game = {
   },
 
   goto (location) {
+    if (!this.locations[location]) {
+      throw Error('Location '+game.location+' undefined.')
+    }
     if (this.location !== location) {
-      playSound(0, 0)
       this.location = location
       this.draw();
     }
   },
 
+  start () {
+    this.locations[this.location].start(this)
+  },
+
+  print (message) {
+    this.message = message;
+    this.draw();
+  },
+
   setState (state) {
-    Object.assign(this.state, state)
+    Object.assign(this.state, state);
     this.draw();
   },
 

@@ -7,6 +7,9 @@ export const start = {
     'flint',
     'flintInventory'
   ],
+  start (game) {
+    game.message = 'Ouch. I just fell through the floor! Huh, this must be a subterranean chamber. I\'d better find a way out.'
+  },
   render (Konva, game) {
     let { doorOpen } = game.state
 
@@ -24,10 +27,31 @@ export const start = {
       if (doorOpen) {
         game.goto('end')
       } else {
-        console.log('closed')
+        game.goto('piccode')
       }
     })
     objects.push(door);
+
+    let doorRight = new Konva.Rect({
+      x: 700,
+      y: 200,
+      width: 100,
+      height: 400,
+      fill: 'black',
+      opacity: 0.2
+    })
+    doorRight.on('click', () => game.goto('a'))
+    objects.push(doorRight);
+    let doorLeft = new Konva.Rect({
+      x: 0,
+      y: 200,
+      width: 100,
+      height: 400,
+      fill: 'black',
+      opacity: 0.2
+    })
+    doorLeft.on('click', () => game.goto('b'))
+    objects.push(doorLeft);
 
     if (!game.inventoryContains('flint')) {
       let flint = new Konva.Image({
@@ -39,6 +63,7 @@ export const start = {
       });
 
       flint.on('click', () => {
+        game.message = 'Found a piece of flint'
         game.addItem({id: 'flint', icon: this.assets['flintInventory']})
       })
       objects.push(flint)

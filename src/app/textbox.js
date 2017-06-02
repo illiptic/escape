@@ -34,9 +34,9 @@ export class Textbox {
   }
 
   render (message) {
-    console.log(message)
     this.box.opacity(message ? 1 : 0)
     this.text.text(message)
+    this.box.draw()
   }
 
 }

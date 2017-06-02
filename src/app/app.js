@@ -26,7 +26,8 @@ export default {
           }, {})
           return loc
         })
-        ui.init();
+        ui.init(game);
+        game.start();
         game.draw();
 
         document.addEventListener('keydown', (e) => {
@@ -38,10 +39,8 @@ export default {
           } else if (e.key === 'ArrowRight') {
             game.goto('end')
           } else if (e.key === 'ArrowUp') {
-            game.message = null
             game.setState({doorOpen: true})
           } else if (e.key === 'ArrowDown') {
-            game.message = 'asdf'
             game.setState({doorOpen: false})
           }
         });
