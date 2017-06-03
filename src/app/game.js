@@ -29,7 +29,7 @@ let game = {
 
   goto (location) {
     if (!this.locations[location]) {
-      throw Error('Location '+game.location+' undefined.')
+      throw Error('Location '+ location +' undefined.')
     }
     if (this.location !== location) {
       this.location = location

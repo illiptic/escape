@@ -11,7 +11,7 @@ export const start = {
     game.message = 'Ouch. I just fell through the floor! Huh, this must be a subterranean chamber. I\'d better find a way out.'
   },
   render (Konva, game) {
-    let { doorOpen } = game.state
+    let { glyphDoorOpen } = game.state
 
     let objects = []
 
@@ -20,11 +20,11 @@ export const start = {
       y: 232,
       width: 184,
       height: 250,
-      image: this.assets[doorOpen ? 'doorOpen' : 'door']
+      image: this.assets[glyphDoorOpen ? 'doorOpen' : 'door']
     });
 
     door.on('click', () => {
-      if (doorOpen) {
+      if (glyphDoorOpen) {
         game.goto('end')
       } else {
         game.goto('piccode')
