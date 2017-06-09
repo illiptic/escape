@@ -15,9 +15,6 @@ export default {
         this.assets = result;
       })
       .then(() => {
-        // game.inventory.push({id: 'flint', icon: this.assets['flint'], selected: true});
-        // game.inventory.push({icon: this.assets['steel']});
-        // game.inventory.push({icon: this.assets['flint_steel']});
         game.locations = _.mapValues(locations, (loc) => {
           loc.background = this.assets[loc.background]
           loc.assets = loc.assets.reduce((acc, asset) => {
@@ -58,15 +55,17 @@ export default {
             img
           };
         })
-        .catch((e) => {
-          console.error('could not load', name, e)
+        .catch(() => {
+          console.error('could not load asset "', name, '"')
+          throw Error('preloading error')
         });
     }))
     .then((promises) => {
-      return promises.reduce((acc, promise) => {
-        acc[promise.name] = promise.img;
-        return acc;
-      }, {});
+      return promises
+        .reduce((acc, promise) => {
+          acc[promise.name] = promise.img;
+          return acc;
+        }, {});
     });
   },
 

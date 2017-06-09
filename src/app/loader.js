@@ -12,8 +12,6 @@ Loader.prototype.loadImage = function(url){
     this.totalCount += 1;
     this.loaded = false;
 
-    console.log('loading ', url, '(image #'+ this.totalCount +')');
-
     this.refreshBar();
 
     // setTimeout(this.imageLoaded.bind(this), 100*url);
@@ -23,6 +21,9 @@ Loader.prototype.loadImage = function(url){
       this.imageLoaded.call(this);
       resolve(image);
     };
+    image.onerror = () => {
+      reject()
+    }
     image.src = url;
   });
 

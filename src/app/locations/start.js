@@ -40,7 +40,7 @@ export const start = {
       fill: 'black',
       opacity: 0.2
     })
-    doorRight.on('click', () => game.goto('a'))
+    doorRight.on('click', () => game.goto('sdn'))
     objects.push(doorRight);
     let doorLeft = new Konva.Rect({
       x: 0,

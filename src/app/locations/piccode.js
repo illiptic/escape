@@ -26,10 +26,10 @@ export const piccode = {
 
     back.on('click', () => game.goto('start'))
 
-    return this.renderWheels(game).concat(back)
+    return this.renderWheels(Konva, game).concat(back)
   },
 
-  renderWheels (game) {
+  renderWheels (Konva, game) {
     return [170, 340, 504].map((x, i) => {
       let wheel = new Konva.Group()
       let frame = new Konva.Rect({
@@ -41,14 +41,14 @@ export const piccode = {
       })
       wheel.add(frame)
 
-      let test = new Konva.Image({
+      let glyph = new Konva.Image({
         x,
         y: 230,
         width: 150,
         height: 150,
         image: this.assets['glyphs/glyph' + this.wheels[i]]
       })
-      wheel.add(test)
+      wheel.add(glyph)
 
       wheel.on('click', () => {
         this.wheels[i] = (this.wheels[i] + 1) % 10
