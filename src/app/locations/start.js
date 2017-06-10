@@ -50,7 +50,7 @@ export const start = {
       fill: 'black',
       opacity: 0.2
     })
-    doorLeft.on('click', () => game.goto('b'))
+    doorLeft.on('click', () => game.goto('towers'))
     objects.push(doorLeft);
 
     if (!game.inventoryContains('flint')) {

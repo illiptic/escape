@@ -61,11 +61,13 @@ export const sdn = {
         image: this.assets.dialhand
       })
 
-      hand.on('click', () => {
-        this.code[i] = (this.code[i] + 1) % 5
-        game.draw()
-        this.codeChecker.call(this, game)
-      })
+      if (!game.state.sdnOpen) {
+        hand.on('click', () => {
+          this.code[i] = (this.code[i] + 1) % 5
+          game.draw()
+          this.codeChecker.call(this, game)
+        })
+      }
 
       return hand
     })
