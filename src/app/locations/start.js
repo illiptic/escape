@@ -5,10 +5,16 @@ export const start = {
     'door',
     'doorOpen',
     'flint',
-    'flintInventory'
+    'flintInventory',
+    'cubesInventory'
   ],
-  start (game) {
-    game.message = 'Ouch. I just fell through the floor! Huh, this must be a subterranean chamber. I\'d better find a way out.'
+  onArrival (game) {
+    if (!this.visited) {
+      game.message = 'Ouch. I just fell through the floor! Huh, this must be a subterranean chamber. I\'d better find a way out.'
+      this.visited = true
+
+      game.addItem({id: 'cubes', icon: this.assets['cubesInventory']})
+    }
   },
   render (Konva, game) {
     let { glyphDoorOpen } = game.state

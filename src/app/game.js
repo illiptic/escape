@@ -9,7 +9,7 @@ let game = {
 
   selectItem (index) {
     this.inventory.forEach((item, i) => {
-      item.selected = (index === i);
+      item.selected = (index === i) || (item.id === index);
     });
     this.draw();
   },
@@ -33,12 +33,14 @@ let game = {
     }
     if (this.location !== location) {
       this.location = location
+      this.triggerOnArrival();
       this.draw();
     }
   },
 
-  start () {
-    this.locations[this.location].start(this)
+  triggerOnArrival () {
+    let currentLocation = this.locations[this.location]
+    currentLocation.onArrival && currentLocation.onArrival(this)
   },
 
   print (message) {

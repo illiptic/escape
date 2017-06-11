@@ -24,7 +24,8 @@ export default {
           return loc
         })
         ui.init(game);
-        game.start();
+        // trigger the on arrival event for the starting location
+        game.triggerOnArrival();
         game.draw();
 
         document.addEventListener('keydown', (e) => {

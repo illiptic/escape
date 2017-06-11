@@ -29,10 +29,16 @@ export const towers = {
       }
     }, 500
   ),
+  onArrival (game) {
+    if (!this.visited) {
+      game.message = 'This looks like a pressure plate surrounded by weird eye symbols.'
+      this.visited = true
+    }
+  },
   render (Konva, game) {
     let back = new Konva.Image({
       x: 368,
-      y: 450,
+      y: 476,
       width: 64,
       height: 64,
       image: this.assets['back']
@@ -93,9 +99,14 @@ export const towers = {
       zone.add(tile)
 
       tile.on('click', () => {
-        this.code[i] = (this.code[i] % 5) + 1
+        if (game.inventoryContains('cubes')) {
+          game.selectItem('cubes')
+          this.code[i] = (this.code[i] % 5) + 1
+          this.codeChecker.call(this, game)
+        } else {
+          game.message = "I have nothing to put on the tiles."
+        }
         game.draw()
-        this.codeChecker.call(this, game)
       })
 
       return zone
