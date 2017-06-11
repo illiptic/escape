@@ -15,12 +15,6 @@ let ui = {
         height: 600
     });
 
-    this.stage.on('click', () => {
-      if (game.message) {
-        game.print(false)
-      }    
-    })
-
     // Scene
     this.scene = new Konva.Layer({
     });
@@ -37,7 +31,7 @@ let ui = {
 
   render (game) {
     Dashboard.render(game);
-    Textbox.render(game.message)
+    Textbox.render(game)
     Scene.render(game);
 
     this.scene.draw();
