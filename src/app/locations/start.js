@@ -4,8 +4,6 @@ export const start = {
   assets: [
     'door',
     'doorOpen',
-    'flint',
-    'flintInventory',
     'cubesInventory'
   ],
   onArrival (game) {
@@ -31,7 +29,7 @@ export const start = {
 
     door.on('click', () => {
       if (glyphDoorOpen) {
-        game.goto('end')
+        game.goto('c')
       } else {
         game.goto('piccode')
       }
@@ -43,37 +41,19 @@ export const start = {
       y: 200,
       width: 100,
       height: 400,
-      fill: 'black',
-      opacity: 0.2
+      opacity: 0
     })
-    doorRight.on('click', () => game.goto('sdn'))
+    doorRight.on('click', () => game.goto('a'))
     objects.push(doorRight);
     let doorLeft = new Konva.Rect({
       x: 0,
       y: 200,
       width: 100,
       height: 400,
-      fill: 'black',
-      opacity: 0.2
+      opacity: 0
     })
-    doorLeft.on('click', () => game.goto('towers'))
+    doorLeft.on('click', () => game.goto('b'))
     objects.push(doorLeft);
-
-    if (!game.inventoryContains('flint')) {
-      let flint = new Konva.Image({
-        x: 650,
-        y: 472,
-        width: 40,
-        height: 40,
-        image: this.assets['flint']
-      });
-
-      flint.on('click', () => {
-        game.message = 'Found a piece of flint'
-        game.addItem({id: 'flint', icon: this.assets['flintInventory']})
-      })
-      objects.push(flint)
-    }
 
     return objects;
   }

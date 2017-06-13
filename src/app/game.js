@@ -19,6 +19,11 @@ let game = {
     this.draw();
   },
 
+  removeItem (id) {
+    _.remove(this.inventory, {id})
+    this.draw();
+  },
+
   selectedItem () {
     return _.find(this.inventory, 'selected')
   },

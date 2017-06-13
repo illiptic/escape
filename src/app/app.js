@@ -37,9 +37,9 @@ export default {
           } else if (e.key === 'ArrowRight') {
             game.goto('end')
           } else if (e.key === 'ArrowUp') {
-            game.setState({doorOpen: true})
+            game.setState({puzzleKeyOpen: true})
           } else if (e.key === 'ArrowDown') {
-            game.setState({doorOpen: false})
+            game.setState({puzzleKeyOpen: false})
           }
         });
       });
