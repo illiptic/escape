@@ -10,10 +10,6 @@ export const h = {
     'back',
     'doorLopen'
   ],
-  onArrival (game) {
-    game.state.towersDone = true
-    game.state.hlit = true
-  },
   render (Konva, game) {
     let { hlit, towersDone } = game.state
     let objects = []
