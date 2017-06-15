@@ -25,7 +25,7 @@ export const towers = {
     function (game) {
       if (this.codeValid(this.code)) {
         game.state.towersDone = true
-        game.goto('start')
+        game.goto('h')
       }
     }, 500
   ),
@@ -44,7 +44,7 @@ export const towers = {
       image: this.assets['back']
     });
 
-    back.on('click', () => game.goto('start'))
+    back.on('click', () => game.goto('h'))
 
     let reset = new Konva.Image({
       x: 650,
@@ -101,7 +101,7 @@ export const towers = {
       tile.on('click', () => {
         if (game.inventoryContains('cubes')) {
           game.selectItem('cubes')
-          this.code[i] = (this.code[i] % 5) + 1
+          this.code[i] = (this.code[i]+1) % 6
           this.codeChecker.call(this, game)
         } else {
           game.message = "I have nothing to put on the tiles."

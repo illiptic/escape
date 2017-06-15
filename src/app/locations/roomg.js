@@ -11,7 +11,8 @@ export const g = {
     'doorgOpen',
     'back',
     'steel',
-    'steelInventory'
+    'steelInventory',
+    'flintSteelInventory'
   ],
   render (Konva, game) {
     let { sdnOpen, glit } = game.state
@@ -57,12 +58,14 @@ export const g = {
       height: 100,
       opacity: 0
     })
-    torch.on('click', () => {
-      let selectedItem = game.selectedItem() || {}
-      if (selectedItem.id === 'flintSteel' ){//&& selectedItem.pieces.length === 2) {
-        game.setState({glit: true})
-      }
-    })
+    if (!glit) {
+      torch.on('click', () => {
+        let selectedItem = game.selectedItem() || {}
+        if (selectedItem.id === 'flintSteel' ){//&& selectedItem.pieces.length === 2) {
+          game.setState({glit: true})
+        }
+      })
+    }
     objects.push(torch)
 
     if (glit) {

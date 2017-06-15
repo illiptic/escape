@@ -4,7 +4,6 @@ export const c = {
   assets: [
     'back',
     'doorLclosed',
-    'doorLopen',
     'mirror',
     'mirrorInventory'
   ],

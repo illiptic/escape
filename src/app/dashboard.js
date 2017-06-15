@@ -25,27 +25,32 @@ export class Dashboard {
   }
 
   render (game) {
-    let inventory = game ? game.inventory || [] : [];
+    if (game.locations[game.location].hideDashboard) {
+      this.dash.opacity(0)
+    } else {
+      this.dash.opacity(1)
 
-    for (let i = 0; i < 6; i++) {
-      if (inventory[i]) {
-        this.items[i].image(inventory[i].icon);
-        this.items[i].show();
+      let inventory = game ? game.inventory || [] : [];
 
-        if(inventory[i].selected) {
-          this.slots[i].fill('rgba(0,0,0,0.1)');
-          this.slots[i].stroke('#a97702');
+      for (let i = 0; i < 6; i++) {
+        if (inventory[i]) {
+          this.items[i].image(inventory[i].icon);
+          this.items[i].show();
+
+          if(inventory[i].selected) {
+            this.slots[i].fill('rgba(0,0,0,0.1)');
+            this.slots[i].stroke('#a97702');
+          } else {
+            this.slots[i].fill('rgba(0,0,0,0.5)');
+            this.slots[i].stroke('black');
+          }
         } else {
+          this.items[i].hide();
           this.slots[i].fill('rgba(0,0,0,0.5)');
           this.slots[i].stroke('black');
         }
-      } else {
-        this.items[i].hide();
-        this.slots[i].fill('rgba(0,0,0,0.5)');
-        this.slots[i].stroke('black');
       }
     }
-
   }
 
   _initInventory () {

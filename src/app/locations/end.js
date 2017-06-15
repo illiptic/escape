@@ -1,5 +1,9 @@
 export const end = {
   name: 'end',
-  background: 'default',
-  assets: []
+  background: 'end',
+  assets: [],
+  hideDashboard: true,
+  onArrival (game) {
+    game.print('Free at last!')
+  }
 }

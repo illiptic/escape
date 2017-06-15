@@ -2,7 +2,7 @@ import {playSound} from './sound.js'
 import ui from './ui.js'
 
 let game = {
-  location: 'g',
+  location: 'start',
   locations: {},
   inventory: [],
   state: {},

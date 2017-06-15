@@ -4,7 +4,8 @@ export const a = {
   assets: [
     'back',
     'flint',
-    'flintInventory'
+    'flintInventory',
+    'flintSteelInventory'
   ],
   render (Konva, game) {
     let objects = []

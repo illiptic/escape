@@ -14,5 +14,6 @@ export * from './roomd.js'
 export * from './roome.js'
 export * from './roomf.js'
 export * from './roomg.js'
+export * from './roomh.js'
 
 export * from './end.js'
