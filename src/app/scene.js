@@ -21,7 +21,10 @@ export class Scene {
 
   render (game) {
     let currentLocation = game.locations[game.location]
+
+    // static background or conditional background:
     currentLocation.background && this.background.image(currentLocation.background)
+    currentLocation.backgroundConditional && this.background.image(currentLocation.backgroundConditional(game))
 
     // Create the custom layout
     this.sceneLayout && this.sceneLayout.destroy()

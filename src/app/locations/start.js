@@ -10,8 +10,6 @@ export const start = {
     if (!this.visited) {
       game.message = 'Ouch. I just fell through the floor! Huh, this must be a subterranean chamber. I\'d better find a way out.'
       this.visited = true
-
-      game.addItem({id: 'cubes', icon: this.assets['cubesInventory']})
     }
   },
   render (Konva, game) {

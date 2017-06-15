@@ -21,7 +21,7 @@ export const a = {
 
     objects.push(back)
 
-    if (!game.inventoryContains('flint')) {
+    if (!game.inventoryContains('flintSteel') || !_.includes(_.find(game.inventory, {id: 'flintSteel'}).pieces, 'flint')) {
       let flint = new Konva.Image({
         x: 650,
         y: 472,
@@ -32,7 +32,14 @@ export const a = {
 
       flint.on('click', () => {
         game.message = 'Found a piece of flint'
-        game.addItem({id: 'flint', icon: this.assets['flintInventory']})
+        if (game.inventoryContains('flintSteel')) {
+          let item = _.find(game.inventory, {id: 'flintSteel'})
+          item.icon = this.assets['flintSteelInventory']
+          item.pieces.push('flint')
+          game.draw()
+        } else {
+          game.addItem({id: 'flintSteel', pieces: ['flint'], icon: this.assets['flintInventory']})
+        }
       })
       objects.push(flint)
     }

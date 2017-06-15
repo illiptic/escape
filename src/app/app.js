@@ -10,7 +10,7 @@ import * as locations from './locations'
 export default {
   init () {
     Sound.init();
-    this._preloadAssets(_.flatMap(locations, (loc) => (loc.assets || []).concat(loc.background)))
+    this._preloadAssets(_.flatMap(locations, (loc) => (loc.assets || []).concat(loc.background || [])))
       .then((result) => {
         this.assets = result;
       })

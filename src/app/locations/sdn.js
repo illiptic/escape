@@ -11,7 +11,7 @@ export const sdn = {
     function (game) {
       if (_.isEqual(this.code, this.sdn(this.code))) {
         game.state.sdnOpen = true
-        game.goto('start')
+        game.goto('g')
       }
     }, 500
   ),
@@ -30,7 +30,7 @@ export const sdn = {
       image: this.assets['back']
     });
 
-    back.on('click', () => game.goto('start'))
+    back.on('click', () => game.goto('g'))
 
     return [back].concat(this.renderHands(Konva, game), this.renderDigits(Konva, game))
   },

@@ -25,6 +25,7 @@ export const e = {
     }
   },
   render (Konva, game) {
+    let { scarab={}, scarabOpen } = game.state
     let objects = []
 
     let back = new Konva.Image({
@@ -39,39 +40,41 @@ export const e = {
 
     objects.push(back)
 
-    let keysOwned = (_.find(game.inventory, {id: 'scarabKey'}) || {}).key
-    if (!(keysOwned & 4)) {
-      let key1 = new Konva.Image({
-        x: 535,
-        y: 284,
-        width: 40,
-        height: 40,
-        image: this.assets['scarabKey/scarabKeyDark1']
-      });
-      key1.on('click', this.takeKey.bind(this, game, 4))
-      objects.push(key1)
-    }
-    if (!(keysOwned & 2)) {
-      let key2 = new Konva.Image({
-        x: 422,
-        y: 185,
-        width: 20,
-        height: 40,
-        image: this.assets['scarabKey/scarabKeyDark2']
-      });
-      key2.on('click', this.takeKey.bind(this, game, 2))
-      objects.push(key2)
-    }
-    if (!(keysOwned & 1)) {
-      let key3 = new Konva.Image({
-        x: 436,
-        y: 276,
-        width: 20,
-        height: 40,
-        image: this.assets['scarabKey/scarabKeyDark3']
-      });
-      key3.on('click', this.takeKey.bind(this, game, 1))
-      objects.push(key3)
+    if (!scarabOpen) {
+      let keysOwned = (_.find(game.inventory, {id: 'scarabKey'}) || {}).key
+      if (!(keysOwned & 4) && !scarab[4]) {
+        let key1 = new Konva.Image({
+          x: 535,
+          y: 284,
+          width: 40,
+          height: 40,
+          image: this.assets['scarabKey/scarabKeyDark1']
+        });
+        key1.on('click', this.takeKey.bind(this, game, 4))
+        objects.push(key1)
+      }
+      if (!(keysOwned & 2) && !scarab[2]) {
+        let key2 = new Konva.Image({
+          x: 422,
+          y: 185,
+          width: 20,
+          height: 40,
+          image: this.assets['scarabKey/scarabKeyDark2']
+        });
+        key2.on('click', this.takeKey.bind(this, game, 2))
+        objects.push(key2)
+      }
+      if (!(keysOwned & 1) && !scarab[1]) {
+        let key3 = new Konva.Image({
+          x: 436,
+          y: 276,
+          width: 20,
+          height: 40,
+          image: this.assets['scarabKey/scarabKeyDark3']
+        });
+        key3.on('click', this.takeKey.bind(this, game, 1))
+        objects.push(key3)
+      }
     }
 
     return objects;

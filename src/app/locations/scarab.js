@@ -23,10 +23,14 @@ export const scarab = {
         game.state.scarab[k] = true
         game.removeItem('scarabKey')
         game.draw()
-        setTimeout(() => {
-          game.state.scarabOpen = true
-          game.goto('c')
-        }, 500)
+
+        if (game.state.scarab[1] && game.state.scarab[2] && game.state.scarab[4] ) {
+          setTimeout(() => {
+            game.state.scarabOpen = true
+            game.goto('c')
+          }, 500)
+        }
+
       } else {
         game.print('I don\'t have a matching piece')
       }
