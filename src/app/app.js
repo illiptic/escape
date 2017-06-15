@@ -2,14 +2,14 @@ import _ from 'lodash';
 import Konva from 'konva';
 
 import Loader from './loader.js';
-import Sound from './sound.js';
+// import Sound from './sound.js';
 import ui from './ui.js';
 import game from './game.js';
 import * as locations from './locations'
 
 export default {
   init () {
-    Sound.init();
+    // Sound.init();
     this._preloadAssets(_.flatMap(locations, (loc) => (loc.assets || []).concat(loc.background || [])))
       .then((result) => {
         this.assets = result;

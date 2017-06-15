@@ -61,8 +61,10 @@ export const g = {
     if (!glit) {
       torch.on('click', () => {
         let selectedItem = game.selectedItem() || {}
-        if (selectedItem.id === 'flintSteel' ){//&& selectedItem.pieces.length === 2) {
+        if (selectedItem.id === 'flintSteel' && selectedItem.pieces.length === 2) {
           game.setState({glit: true})
+        } else {
+          game.print('I need something to light this')
         }
       })
     }

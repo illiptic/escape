@@ -38,7 +38,7 @@ export const h = {
     if (!hlit) {
       torch.on('click', () => {
         let selectedItem = game.selectedItem() || {}
-        if (selectedItem.id === 'flintSteel' ){//&& selectedItem.pieces.length === 2) {
+        if (selectedItem.id === 'flintSteel' && selectedItem.pieces.length === 2) {
           game.setState({hlit: true})
         }
       })
