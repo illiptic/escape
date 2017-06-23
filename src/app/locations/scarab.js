@@ -13,7 +13,8 @@ export const scarab = {
   placeKey (game, k) {
     let selectedItem = game.selectedItem() || {}
     if (selectedItem.id === 'scarabKey') {
-      let newkey = (k & selectedItem.key) > 0 ? selectedItem.key - k : -1
+      let match = k & selectedItem.key
+      let newkey = match > 0 ? selectedItem.key - k : -1
       if (newkey > 0) {
         game.state.scarab[k] = true
         selectedItem.key = newkey
