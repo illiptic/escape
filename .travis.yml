@@ -1,0 +1,17 @@
+dist: trusty
+sudo: required
+
+language: node_js
+
+addons:
+  sonarqube:
+    organization: "illiptic-github"
+    token:
+      secure: "660db811d23cf0314cdc4d094e278291cd804685"
+jdk:
+  - oraclejdk8
+script:
+  - sonar-scanner
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
