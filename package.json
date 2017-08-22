@@ -10,7 +10,7 @@
     "build": "npm run clean && npm run build:webpack",
     "start": "node devServer.js",
     "lint": "eslint src",
-    "test": "nyc ava"
+    "test": "nyc --reporter=lcov ava"
   },
   "author": "illiptic",
   "license": "MIT",
