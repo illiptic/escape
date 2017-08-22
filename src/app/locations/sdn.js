@@ -46,13 +46,24 @@ export const sdn = {
       })
 
       return digit
-    })
+    }).concat(this.code.map((d,i) => {
+      let digit = new Konva.Image({
+        x: 292 + 68 * i,
+        y: 298,
+        offsetX: 21,
+        width: 42,
+        height: 58,
+        image: this.assets['digits/digit' + d]
+      })
+
+      return digit
+    }))
   },
   renderHands (Konva, game) {
     return [292, 358, 426, 491, 561].map((x, i) => {
       let hand = new Konva.Image({
         x,
-        y: 363,
+        y: 416,
         width: 60,
         height: 60,
         offsetX: 30,
