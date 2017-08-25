@@ -18,7 +18,7 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("styles.css")
   ],
   module: {
     loaders: [
