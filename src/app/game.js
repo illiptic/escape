@@ -2,7 +2,7 @@
 import ui from './ui.js'
 
 let game = {
-  location: 'sdn',
+  location: 'start',
   locations: {},
   inventory: [],
   state: {},
