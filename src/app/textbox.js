@@ -38,7 +38,7 @@ export class Textbox {
         y: 0,
         width: 700,
         height: 60,
-        fill: 'rgba(0,0,0,0.5)',
+        fill: 'rgba(0,0,0,0.8)',
         stroke: 'black',
         strokeWidth: 2,
         cornerRadius: 10
@@ -47,8 +47,7 @@ export class Textbox {
       let text = new Konva.Text({
         x: 10,
         y: 10,
-        stroke: 'white',
-        strokeWidth: 1,
+        fill: 'white',
         fontSize: 14,
         fontFamily: 'Calibri',
         text: game.message
