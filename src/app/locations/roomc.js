@@ -61,7 +61,7 @@ export const c = {
     doorRight.on('click', () => game.goto('e'))
     objects.push(doorRight);
 
-    if (!game.inventoryContains('mirror')) {
+    if (!game.inventoryContains('mirror') && !game.state.mirrorPlaced) {
       let mirror = new Konva.Image({
         x: 100,
         y: 407,
