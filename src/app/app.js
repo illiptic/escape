@@ -49,7 +49,7 @@ export default {
     let loader = new Loader(this._onLoad);
 
     return Promise.all(locationAssets.map((name) => {
-      return loader.loadImage('/assets/' + name + '.png')
+      return loader.loadImage('assets/' + name + '.png')
         .then((img) => {
           return {
             name,

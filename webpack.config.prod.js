@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -10,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: ''
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -18,7 +20,18 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("styles.css"),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html'
+    }),
+    new CopyWebpackPlugin([
+        { from: 'public' }
+    ], {
+      ignore: [
+        '.*'
+      ]
+    })
   ],
   module: {
     loaders: [
@@ -32,7 +45,7 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },{
         test: /\.(jpe?g|gif|png)$/,
-        loader: 'file-loader?emitFile=false&name=[path][name].[ext]'
+        loader: 'file-loader?name=static/src/app/assets/[name].[ext]'
       }
     ]
   }
