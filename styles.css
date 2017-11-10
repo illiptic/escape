@@ -28,7 +28,7 @@ canvas {
 }
 
 #startScreen {
-  background-image: url(/static/src/app/assets/mural.jpg);
+  background-image: url(static/src/app/assets/mural.jpg);
 }
 
 .progress {
